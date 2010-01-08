@@ -3,7 +3,6 @@
 %define release %mkrel 1
 %define libname %mklibname usbip 0
 %define develname %mklibname -d usbip 0
-%define usbids_dir %_datadir/hwdatabase
 
 Name: %name
 Summary: USB device sharing system over IP network
@@ -39,7 +38,6 @@ were directly attached; for example, we can:
 %package common
 Summary: USB/IP common files
 Group: System/Configuration/Networking
-BuildArch: noarch
 
 %description common
 The USB/IP Project aims to develop a general USB device sharing system
@@ -183,14 +181,16 @@ popd
 
 %files common
 %doc src/AUTHORS NEWS README
+%_datadir/usbip/usb.ids
 
 %files server
 %doc src/README
 %_bindir/%{name}d
-%_bindir/usbaid
 %_bindir/bind_driver
 
 
 %files -n %develname
 %_libdir/*.so
+%_libdir/*.a
+%_libdir/*.la
 %_includedir/*

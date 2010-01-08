@@ -13,6 +13,7 @@ Group: System/Configuration/Networking
 Source0: http://downloads.sourceforge.net/project/usbip/%{name}/%{version}/%{name}-%{version}.tar.gz
 Patch0: usbip-0.1.7-aux_dir.patch
 URL: http://%name.sourceforge.net/
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires: glib2-devel >= 2.6.0
 BuildRequires: libsysfs-devel
@@ -33,31 +34,6 @@ were directly attached; for example, we can:
     play some music.
   - USB printers, USB scanners, USB serial converters and USB Ethernet
     interfaces: ok, use fine.
-
-
-%package common
-Summary: USB/IP common files
-Group: System/Configuration/Networking
-
-%description common
-The USB/IP Project aims to develop a general USB device sharing system
-over IP network. To share USB devices between computers with their full
-functionality, USB/IP encapsulates "USB requests" into IP packets and
-transmits them between computers. Original USB device drivers and
-applications can be also used for remote USB devices without any
-modification of them. A computer can use remote USB devices as if they
-were directly attached; for example, we can:
-  - USB storage devices: fdisk, mkfs, mount/umount, file operations,
-    play a DVD movie and record a DVD-R media.
-  - USB keyboards and USB mice: use with linux console and X Window
-    System.
-  - USB webcams and USB speakers: view webcam, capture image data and
-    play some music.
-  - USB printers, USB scanners, USB serial converters and USB Ethernet
-    interfaces: ok, use fine.
-
-This package contains common files for %name-server and %name-client.
-
 
 %package -n %libname
 Summary: Shared library for USB/IP utils
@@ -112,7 +88,6 @@ programs which make use of %lname.
 %package client
 Summary: USB/IP client utility
 Group: System/Configuration/Networking
-Requires: %name-common = %version-%release
 
 %description client
 The USB/IP Project aims to develop a general USB device sharing system
@@ -137,7 +112,6 @@ This package contains USB/IP client utility.
 %package server
 Summary: USB/IP server utils
 Group: System/Configuration/Networking
-Requires: %name-common = %version-%release
 
 %description server
 The USB/IP Project aims to develop a general USB device sharing system
@@ -165,31 +139,35 @@ This package contains USB/IP client utils.
 %build
 pushd src
 ./autogen.sh
-%configure2_5x
+%configure2_5x --with-usbids-dir=/usr/share/
 %make
 popd
 
+%clean
+rm -rf %buildroot
+
 %install
+rm -rf %buildroot
 %makeinstall -C src
 
 %files -n %libname
+%defattr(-, root, root)
+%doc src/AUTHORS NEWS README
 %_libdir/*.so.*
 
 %files client
+%defattr(-, root, root)
 %doc src/README
 %_bindir/%name
 
-%files common
-%doc src/AUTHORS NEWS README
-%_datadir/usbip/usb.ids
-
 %files server
+%defattr(-, root, root)
 %doc src/README
 %_bindir/%{name}d
 %_bindir/bind_driver
 
-
 %files -n %develname
+%defattr(-, root, root)
 %_libdir/*.so
 %_libdir/*.a
 %_libdir/*.la

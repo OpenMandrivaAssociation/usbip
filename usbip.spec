@@ -165,7 +165,7 @@ This package contains USB/IP client utils.
 %build
 pushd src
 ./autogen.sh
-%configure 
+%configure2_5x
 %make
 popd
 

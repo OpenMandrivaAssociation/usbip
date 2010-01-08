@@ -88,6 +88,7 @@ programs which make use of %lname.
 %package client
 Summary: USB/IP client utility
 Group: System/Configuration/Networking
+Requires: kmod(vhci-hcd)
 
 %description client
 The USB/IP Project aims to develop a general USB device sharing system
@@ -112,6 +113,7 @@ This package contains USB/IP client utility.
 %package server
 Summary: USB/IP server utils
 Group: System/Configuration/Networking
+Requires: kmod(usbip)
 
 %description server
 The USB/IP Project aims to develop a general USB device sharing system

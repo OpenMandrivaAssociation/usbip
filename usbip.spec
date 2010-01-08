@@ -139,7 +139,7 @@ This package contains USB/IP client utils.
 %build
 pushd src
 ./autogen.sh
-%configure2_5x --with-usbids-dir=/usr/share/
+%configure2_5x --with-usbids-dir=/usr/share/ --disable-usbids-install
 %make
 popd
 

@@ -193,4 +193,4 @@ popd
 
 %files -n %develname
 %_libdir/*.so
-%_includedir/%name
+%_includedir/*

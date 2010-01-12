@@ -1,6 +1,6 @@
 %define name usbip
 %define version 0.1.7
-%define release %mkrel 1
+%define release %mkrel 2
 %define libname %mklibname usbip 0
 %define develname %mklibname -d usbip 0
 
@@ -12,6 +12,7 @@ License: GPLv2+
 Group: System/Configuration/Networking
 Source0: http://downloads.sourceforge.net/project/usbip/%{name}/%{version}/%{name}-%{version}.tar.gz
 Patch0: usbip-0.1.7-aux_dir.patch
+Patch1:	usbip-0.1.7-usb.ids_dir.patch
 URL: http://%name.sourceforge.net/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -137,11 +138,12 @@ This package contains USB/IP client utils.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 pushd src
 ./autogen.sh
-%configure2_5x --with-usbids-dir=/usr/share/ --disable-usbids-install
+%configure2_5x --disable-usbids-install
 %make
 popd
 

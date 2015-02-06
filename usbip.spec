@@ -1,6 +1,6 @@
 %define name usbip
 %define version 0.1.7
-%define release %mkrel 3
+%define release 4
 %define libname %mklibname usbip 0
 %define develname %mklibname -d usbip 0
 %define develname_static %mklibname -d -s usbip 0

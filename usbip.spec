@@ -14,7 +14,7 @@ Group: System/Configuration/Networking
 Source0: http://downloads.sourceforge.net/project/usbip/%{name}/%{version}/%{name}-%{version}.tar.gz
 Patch0: usbip-0.1.7-aux_dir.patch
 Patch1:	usbip-0.1.7-usb.ids_dir.patch
-URL: http://%name.sourceforge.net/
+URL: https://%name.sourceforge.net/
 
 BuildRequires: glib2-devel >= 2.6.0
 BuildRequires: sysfsutils-devel

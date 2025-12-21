@@ -16,6 +16,11 @@ Patch0: usbip-0.1.7-aux_dir.patch
 Patch1:	usbip-0.1.7-usb.ids_dir.patch
 URL: https://%name.sourceforge.net/
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires: glib2-devel >= 2.6.0
 BuildRequires: sysfsutils-devel
 
